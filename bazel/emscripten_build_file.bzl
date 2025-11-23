@@ -2,6 +2,7 @@
 
 EMSCRIPTEN_BUILD_FILE_CONTENT_TEMPLATE = """
 package(default_visibility = ['//visibility:public'])
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
 filegroup(
     name = "all",
@@ -90,4 +91,11 @@ filegroup(
         ],
     ),
 )
+
+cc_library(
+    name = "cc_includes",
+    hdrs = [":includes"],
+    includes = ["emscripten/cache/sysroot/include"]
+)
+
 """
